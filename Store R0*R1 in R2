@@ -1,0 +1,47 @@
+// Mult.asm multiplies the values of R0 and R1, then stores value in R2.
+
+
+// Ensure R2 is set to 0.
+    @R2
+    M=0
+
+// If R1 > 0, jump into LOOP.
+    @R1
+    D=M
+    @LOOP
+    D;JGT
+
+// If not, go to END.
+   @END
+   0;JMP
+
+
+// This adds R0 to R2 and subtracts 1 from R1.
+// If R1 > 0, jump into LOOP again.
+
+(LOOP)
+// Get R2.
+    @R2
+    D=M
+
+// Add R0.
+    @R0
+    D=D+M
+
+// Write result in R2.
+    @R2
+    M=D
+
+// Subtract 1 from R1.
+    @R1
+    D=M-1
+    M=D
+
+// If R1 is still > 0, LOOP again.
+    @LOOP
+    D;JGT
+
+
+(END)
+    @END
+    0;JMP
